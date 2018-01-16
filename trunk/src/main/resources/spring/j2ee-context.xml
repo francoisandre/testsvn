@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:property-placeholder
+		location="${sirhen.server.config.url}/${project.artifactId}.properties" />
+
+	<bean id="mbeanServer" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+		<property name="locateExistingServerIfPossible" value="true" />
+	</bean>
+
+	<bean id="${project.artifactId}-exporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+		<property name="beans">
+			<map>
+				<entry key="fr.gouv.education.sirhen:name=${project.artifactId}-config" value-ref="config" />
+			</map>
+		</property>
+		<property name="server" ref="mbeanServer" />
+		<property name="registrationBehaviorName" value="REGISTRATION_IGNORE_EXISTING" />
+	</bean>
+
+</beans>

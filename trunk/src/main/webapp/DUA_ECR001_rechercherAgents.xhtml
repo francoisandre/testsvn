@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:pretty="http://ocpsoft.com/prettyfaces"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:sirhen="http://sirhen.education.gouv.fr/composants/jsf/tags"
+      xmlns:id="http://sirhen.education.gouv.fr/composants/id/tags">
+
+<body>
+
+<ui:composition template="layout/template_sirhen.xhtml" >
+
+	<!--  TITRE DE LA PAGE -->
+	<ui:define name="titre"><h:outputText value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_024}"/></ui:define>
+	  
+	<ui:define name="NavigationHautPage">	
+			<sirhen:navigation titreAppli="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_024}">
+				<id:portail />
+				<h:commandLink value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_025}" />
+			</sirhen:navigation>
+	</ui:define>
+	 
+	<ui:define name="zone1">
+			<h:form id="RecherchePersonnes">
+				<!-- MESSAGE GENERIQUE -->
+				<div class="borderBleu">
+					<rich:messages id="messages" styleClass="msgGenerique" />
+				</div>
+				
+				<c:set var="accesPrenomNom" value="#{AgentModele.accesModificationAgentsAuthorise || 
+											AgentModele.accesConsultationAgentsAuthorise  || 
+											AgentModele.accesSuppressionAgentsAuthorise}" />				
+				
+				<sirhen:panel id="recherche" sansTitre="true">				
+
+					<h:outputLabel style="width:350px" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_010}" rendered="${accesPrenomNom}" />
+					<h:inputText style="width:250px" value="#{AgentModele.recherche.nom}" rendered="${accesPrenomNom}"/>
+											
+					<h:outputLabel style="width:350px" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_011}" rendered="${accesPrenomNom}"/>
+					<h:inputText style="width:250px" value="#{AgentModele.recherche.prenom}" rendered="${accesPrenomNom}"/>
+											
+					<h:outputLabel style="width:350px" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_016}" />
+					<h:inputText value="#{AgentModele.recherche.numen}" />
+					
+					<ui:define name="boutonsPanel">            
+						<h:commandLink styleClass="#{(AgentModele.accesResultatsRechercheAuthorise?'btRecherche2':'btRecherche')}" 
+									   action="#{AgentControleur.rechercheAgents}" value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_009}" />
+					</ui:define>
+					
+				</sirhen:panel>
+			</h:form>
+	</ui:define>
+
+
+	<ui:define name="zone2">	
+	
+		<h:form id="selectPerson" rendered="#{AgentModele.accesResultatsRechercheAuthorise}"> 	
+			<div class="borderBleu">
+				<table>
+					<tr>
+						<td class="titre">
+							<h:outputFormat value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_002}" >
+								<f:param value="#{AgentControleur.vue.dataTable.rowCount}" />
+							</h:outputFormat>
+						</td>
+						<td class="titre">
+							<h:outputText value="|" rendered="#{AgentControleur.vue.dataTable.rowCount > 5}" />
+						</td>
+						<td class="titrePagination">
+							<h:outputText value="pages :" rendered="#{AgentControleur.vue.dataTable.rowCount > 5}" />
+						</td>
+						<td>
+							<rich:datascroller for="result" maxPages="5" fastControls="hide" stepControls="hide" boundaryControls="hide" />
+						</td>
+					</tr>
+				</table>
+			</div>		
+			<div id="formResult">
+								
+			<!-- BLOC 2 -->
+				<div class="borderBleu1">
+									
+	 	  			<rich:dataTable id="result" value="#{AgentModele.liste}" binding="#{AgentControleur.vue.dataTable}" var="agent" rows="5" cellspacing="0" cellpadding="0" >
+					  
+					    <h:column rendered="#{AgentModele.accesSuppressionAgentsAuthorise}">
+					      <f:facet name="header">
+							<h:outputText styleClass="gras" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_023}" />
+					      </f:facet>
+						  <h:selectBooleanCheckbox binding="#{AgentControleur.vue.checkbox}" id="checkboxsupp"/>			  	                          
+					    </h:column>						  
+
+					    <rich:column sortBy="#{agent.nom}" sortOrder="ASCENDING" >
+					      <f:facet name="header">
+					      <h:outputText styleClass="grasU" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_010}" />
+					      </f:facet>
+					      <h:outputText value="#{agent.nom}" />
+					    </rich:column>	
+					    			    
+					    <h:column>
+					      <f:facet name="header">
+					      <h:outputText styleClass="gras" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_011}" />
+					      </f:facet>
+					      <h:outputText value="#{agent.prenom}" />
+					    </h:column>
+					    
+					    <h:column>
+					      <f:facet name="header">
+					      <h:outputText styleClass="gras" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_017}" />
+					      </f:facet>
+					      <h:outputText value="#{agent.dateNaissance}" />
+					    </h:column>	
+					    
+						<h:column>
+					      <f:facet name="header">
+					      <h:outputText styleClass="gras" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_016}" />
+					      </f:facet>
+					      <h:outputText value="#{agent.numen}" />
+					    </h:column>
+		
+						<h:column rendered="#{AgentModele.accesConsultationAgentsAuthorise}">
+					      <f:facet name="header" />  					      
+					      <h:commandLink action="#{AgentControleur.consulterAgent}">
+					      	<h:outputText styleClass="grasU" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_018}" />
+					      </h:commandLink>			      		      				
+					    </h:column>						    
+					    
+						<h:column rendered="#{AgentModele.accesModificationAgentsAuthorise}">
+					      <f:facet name="header" />	
+					      <h:commandLink action="#{AgentControleur.modifierAgent}">
+					      	<h:outputText styleClass="grasRougeU" value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_019}" />
+					      </h:commandLink>					      	      			      			      		      				
+					    </h:column>		
+					    
+					    <!--  SIRHENARCHETYPE_REMOVE_SECTION_START -->			    
+					    
+						<h:column rendered="#{AgentModele.accesDifAuthorise}">
+					      <f:facet name="header"/>	
+					      <h:outputLink value="#{facesContext.externalContext.requestContextPath}/ihmr/dif/#{agent.numen}">
+					      	<h:outputText value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_021}" /> 
+						  </h:outputLink>						     			      				
+					    </h:column>						    		    
+				<!--  SIRHENARCHETYPE_REMOVE_SECTION_END -->
+					  </rich:dataTable>		
+				</div>				
+				</div>	
+					<!-- POPUP -->
+					<rich:modalPanel id="panel" width="445" height="155" >
+						<f:facet name="header">
+						</f:facet>
+						<f:facet name="controls">
+						</f:facet>
+							<div class="borderRouge">
+								<div class="titre" style="font-size:9pt"><h:outputText value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_022}"/> </div>
+								<div class="td2" style="width:400px; font-size:9pt; padding:10px">
+									<h:outputLabel value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_003}" />
+								</div>
+							</div>
+							<!-- BOUTON ANNULER ET VALIDER LA SAISIE -->
+							<div id="boutons">
+								<h:commandLink styleClass="btAnnuler" style="font-size:9pt" value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_006}" />	
+								<h:commandLink styleClass="btValider" style="font-size:9pt" value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_007}" action="#{AgentControleur.supprimerAgents}" />
+							</div>
+					</rich:modalPanel>
+					<!-- FIN POPUP -->
+             
+					<h:outputLink id="btSupprimer" styleClass="btRecherche" value="#" rendered="#{AgentModele.accesSuppressionAgentsAuthorise}" ><h:outputText value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_008}"/>
+						<a4j:support event="onclick"
+								action="#{AgentControleur.verifierCheckbox}"								
+								oncomplete="#{facesContext.maximumSeverity == null ? 'Richfaces.showModalPanel(\'panel\');' : 'Richfaces.hideModalPanel(\'panel\');'}"/>
+					</h:outputLink>
+					
+			<div id="marge">&nbsp;</div>
+		</h:form>
+			
+	</ui:define>
+             
+</ui:composition>  
+
+</body>
+</html>

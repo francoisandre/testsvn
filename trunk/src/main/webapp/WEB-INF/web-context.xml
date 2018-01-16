@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Import des contextes spring des composants techniques -->
+	<import resource="classpath*:spring/ct-annuaire-service-context.xml" />
+	<import resource="classpath*:spring/ct-identification-context.xml" />
+	<import resource="classpath*:spring/ct-gestion-nomenclature-context.xml" />
+	
+	<!-- Import des conf spring de l'application -->
+	<import resource="classpath*:spring/application-context.xml" />
+	<import resource="classpath*:spring/coordination-context.xml" />
+	<import resource="classpath*:spring/client-context.xml" />
+	<import resource="classpath*:spring/tech-context.xml" />
+	<import resource="classpath*:spring/j2ee-context.xml" />
+	<import resource="classpath*:spring/ws-context.xml" />
+
+</beans>

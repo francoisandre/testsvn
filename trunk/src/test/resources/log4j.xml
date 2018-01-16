@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
+	debug="false">
+
+
+	<!-- ============================== -->
+	<!-- Append messages to the console -->
+	<!-- ============================== -->
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- The default pattern: Date Priority [Category] Message\n -->
+			<param name="ConversionPattern" value="%d{yy-MM-dd HH:mm:ss,SSS} %-5p [%c{1}] %m%n" />
+		</layout>
+	</appender>
+
+
+	<!-- Limit the org.apache category to INFO as its DEBUG is verbose -->
+	<category name="org">
+		<priority value="INFO" />
+	</category>
+
+	<category name="fr">
+		<priority value="DEBUG" />
+	</category>
+
+	<category name="org.springframework">
+		<priority value="INFO" />
+	</category>
+	<category name="org.hibernate">
+		<priority value="INFO" />
+	</category>
+	<category name="com.centrasite">
+		<priority value="WARN" />
+	</category>
+
+	<category name="com.softwareag">
+		<priority value="WARN" />
+	</category>
+
+
+	<category name="org.apache.catalina.core">
+		<priority value="FATAL" />
+	</category>
+
+	<root>
+		<!-- priority value="INFO" /-->
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+
+</log4j:configuration>

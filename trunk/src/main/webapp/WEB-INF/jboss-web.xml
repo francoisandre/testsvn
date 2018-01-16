@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jboss-web PUBLIC
+        "-//JBoss//DTD Web Application 5.0//EN"
+        "http://www.jboss.org/j2ee/dtd/jboss-web_5_0.dtd">
+<jboss-web>
+	<class-loading>
+		<loader-repository>
+			fr.gouv.education.sirhen:loader=mapi-gin-gestion-des-contrats-des-non-titulaires
+      </loader-repository>
+	</class-loading>
+	<context-root>mapi-gin-gestion-des-contrats-des-non-titulaires</context-root>
+</jboss-web> 

@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">  
+      
+<body>
+
+
+<ui:composition template="layout/template_sirhen.xhtml" >
+
+	<!--  TITRE DE LA PAGE -->
+	<ui:define name="titre">Accueil</ui:define>
+	  
+	<ui:define name="NavigationHautPage">					
+			<div id="cheminNavTitre">
+				<div id="cheminNav"><a class="lienCheminNav" href="profilAgent.htm">${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_029}</a> &gt; <a class="lienCheminNav" href="AppliAccueil.htm">${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_025}</a> &gt; Accueil</div> 
+				<div id="titreAppli">Accueil</div>  
+			</div>		
+	</ui:define>
+
+	  
+	<ui:define name="zone1">
+							
+		 <!-- COTE GAUCHE -->
+		<div id="edito">
+		
+		
+		<div class="intro">Haec ait et turpi conuoluens stamina fuso abrupit stolidae regalia tempora uitae. At Lachesis, redimita comas, ornata capillos, Pieria crinem lauro frontemque coronans, 
+		candida de niueo subtemina uellere sumit felici moderanda manu, quae ducta colorem assumpsere nouum. Mirantur pensa sorores: mutatur uilis pretioso lana metallo, 
+		aurea formoso descendunt saecula filo. 
+		</div>			
+		
+		<div class="borderBleu">
+		<!-- PARAGRAPHE 1 -->
+		<div class="titreEdito">Présentation de la fonction 1</div>
+		<div class="edito">
+					Qualis discutiens fugientia
+					Haec ait et turpi conuoluens stamina fuso
+					abrupit stolidae regalia tempora uitae.
+					At Lachesis, redimita comas, ornata capillos,
+					Pieria crinem lauro frontemque coronans,
+					candida de niueo subtemina uellere sumit
+					felici moderanda manu, quae ducta colorem
+					assumpsere nouum. <b>Mirantur pensa sorores:
+					mutatur</b> uilis pretioso lana metallo,
+					aurea formoso descendunt saecula filo.
+					Nec modus est illis: felicia uellera ducunt
+					et gaudent implere manus: <u>sunt dulcia pensa.
+					Sponte sua festinat</u> opus nulloque labore
+					mollia contorto descendunt stamina fuso;
+					uincunt Tithoni, uincunt et Nestoris annos.
+					Phoebus adest cantuque iuuat gaudetque futuris
+					et laetus nunc plectra mouet, nunc pensa ministrat:
+					detinet intentas cantu fallitque laborem.
+		</div>
+		</div>
+		<!-- FIN PARAGRAPHE 1 -->
+		<br></br>
+		
+		<!-- PARAGRAPHE 2 -->
+		<div class="borderBleu">	
+		<div class="titreEdito">Présentation de la fonction 2</div>
+		<div class="edito">
+					Dumque nimis citharam fraternaque carmina laudant,
+					plus solito neuere manus humanaque fata
+					laudatum transcendit opus. 'Ne demite, Parcae'
+					Phoebus ait; 'uincat mortalis tempora uitae
+					ille mihi similis uultu similisque decore
+					nec cantu nec uoce minor.
+		</div>
+		</div>
+		<!-- FIN PARAGRAPHE 2 -->
+		
+		<br></br>
+		
+		<div id="form">
+		<!-- PARAGRAPHE 3 -->
+		<div class="borderBleu">
+		<div class="titre">Liste &agrave; traiter</div>  
+		
+		  <table border="0" cellpadding="0" cellspacing="0">
+		   <tr>
+			   <td class="tabline1" style="width:500px">Haec ait et turpi conuoluens </td>
+			   <td class="tabline2"><u>4026</u></td>
+		   </tr>
+		   <tr>
+			   <td class="tabline1">Pieria crinem lauro frontemque </td>
+			   <td class="tabline2"><u>4035</u></td>
+		   </tr>
+		   <tr>
+			   <td class="tabline1">Nec modus est illis</td>
+			   <td class="tabline2"><u>4051</u></td>
+		   </tr>
+		   <tr>
+			   <td class="tabline1">Qualis discutiens fugientia </td>
+			   <td class="tabline2"><u>4055</u></td>
+		   </tr>
+		  </table>
+		 </div>
+		 </div>
+		 <!-- FIN PARAGRAPHE 3 -->
+		
+		
+		</div>
+		<!-- COTE DROIT -->
+		
+		<!-- INFO CONNEXE 1 -->
+		<div class="infoConnexe" style="margin-bottom:20px;">
+			<div class="titre">Information connexe</div> 
+			<div id="tabloPortail" style="width:210px">
+			<table>
+				<tr>
+					<td class="lineH">
+					<a class="lien" href="#" title="-">Haec ait et turpi conuoluens</a><br></br>
+					<a class="lien" href="#" title="-">Nec modus est illis</a><br></br>
+					<a class="lien" href="#" title="-">Uincunt Tithoni</a><br></br>
+					<a class="lien" href="#" title="-">Labore mollia contorto</a></td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		
+		
+		<!-- INFO CONNEXE 2 -->
+		<div class="infoConnexe">
+			<div class="titre">Necesse est illi omnia</div> 
+			<div id="tabloPortail" style="width:210px">
+			<table>
+				<tr>
+					<td>
+					Mirantur pensa sorores:
+					mutatur uilis pretioso lana metallo,
+					aurea formoso descendunt saecula filo.
+					Nec modus est illis: felicia uellera ducunt
+					et gaudent implere manus: </td>
+				</tr>
+				<tr>
+					<td>
+					Mirantur pensa sorores:
+					mutatur uilis pretioso lana metallo,
+					aurea formoso descendunt saecula filo.
+					Nec modus est illis: felicia uellera ducunt
+					et gaudent implere manus: </td>
+				</tr>
+			</table>
+			</div>
+		</div>
+		<div id="clear">&nbsp;</div>
+
+	</ui:define>
+
+	<ui:define name="zone2">
+		<div id="marge">&nbsp;</div>
+		<br/>												
+	</ui:define>
+  
+</ui:composition>  
+</body>
+</html>

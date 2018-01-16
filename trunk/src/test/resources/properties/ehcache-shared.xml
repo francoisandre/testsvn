@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+	monitoring="on">
+
+	<diskStore path="java.io.tmpdir" />
+
+	<cacheManagerEventListenerFactory
+		class="" properties="" />
+
+	<defaultCache
+		maxElementsInMemory="10000"
+		eternal="false"
+		timeToIdleSeconds="120"
+		timeToLiveSeconds="120"
+		overflowToDisk="true"
+		maxElementsOnDisk="10000000"
+		diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LRU" />
+		
+	<!-- Cache des vo -->
+	<cache
+		name="nomenclature_elements"
+		maxElementsInMemory="300000"
+		maxElementsOnDisk="0"
+		eternal="false"
+		overflowToDisk="true"
+		timeToIdleSeconds="3600"
+		timeToLiveSeconds="0" />
+
+	<!-- Cache des liens -->
+	<cache
+		name="nomenclature_liens"
+		maxElementsInMemory="500000"
+		maxElementsOnDisk="0"
+		eternal="false"
+		overflowToDisk="true"
+		timeToIdleSeconds="3600"
+		timeToLiveSeconds="0" />
+	
+	<!-- Cache de l'annuaire de service -->
+	<cache
+		name="annuaireservice"
+		maxElementsInMemory="1000"
+		maxElementsOnDisk="1000"
+		eternal="false"
+		overflowToDisk="true"
+		timeToIdleSeconds="3600"
+		timeToLiveSeconds="0" />
+
+</ehcache>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<!-- SIRHENARCHETYPE_SUPPRIME_FILE -->
+<body>
+
+
+<ui:composition template="layout/template_sirhen.xhtml">
+
+	<!--  TITRE DE LA PAGE -->
+	<ui:define name="titre">Maquette</ui:define>
+
+	<ui:define name="NavigationHautPage">
+		<div id="cheminNavTitre">
+		<div id="cheminNav"><a class="lienCheminNav"
+			href="profilAgent.htm">${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_029}</a> &gt; <a
+			class="lienCheminNav" href="AppliAccueil.htm">${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_025}</a>
+		&gt; Accueil</div>
+		<div id="titreAppli">Paquette</div>
+		</div>
+	</ui:define>
+
+
+	<ui:define name="zone1">
+							
+		Hello World
+
+		<h:form>
+
+
+			<ul>
+				<li><a href="./DUA_ECR001_rechercherAgents.xhtml">DUA_ECR001_rechercherAgents.xhtml</a></li>
+				<li><a href="./DUA_ECR002_consulterAgent.xhtml">DUA_ECR002_consulterAgent.xhtml</a></li>
+				<li><a href="./DUA_ECR003_creerAgent.xhtml">DUA_ECR003_creerAgent.xhtml</a></li>
+				<li><a href="./DUA_ECR004_modifierAgent.xhtml">DUA_ECR004_modifierAgent.xhtml</a></li>
+				<!--li><a href="./DUA_ECR005_creerAffectation.xhtml">DUA_ECR005_creerAffectation.xhtml</a></li>
+				<li><a href="./DUA_ECR006_consulterDif.xhtml">DUA_ECR006_consulterDif.xhtml</a></li>
+				<li><a href="./DUA_ECR007_gestionPiecesJointes.xhtml">DUA_ECR007_gestionPiecesJointes.xhtml</a></li-->
+			</ul>
+
+
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="zone2">
+		<div id="marge">&nbsp;</div>
+		<br />
+	</ui:define>
+
+</ui:composition>
+</body>
+</html>

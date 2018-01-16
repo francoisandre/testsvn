@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:as="uri://sirhen.education.gouv.fr/ct-annuaire-service/1.0" xmlns:socle="uri://sirhen.education.gouv.fr/ct-socle/1.0"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://cxf.apache.org/jaxws
+	http://cxf.apache.org/schemas/jaxws.xsd
+	uri://sirhen.education.gouv.fr/ct-annuaire-service/1.0
+	uri://sirhen.education.gouv.fr/ct-annuaire-service/1.0/ct-annuaire-service.xsd
+	uri://sirhen.education.gouv.fr/ct-socle/1.0
+	uri://sirhen.education.gouv.fr/ct-socle/1.0/ct-socle.xsd">
+
+	<jaxws:client id="clientDUA" serviceClass="fr.gouv.education.sirhen.abl.dua.mas.ws.client.agentservice.IAgentService"
+		bindingId="http://www.w3.org/2003/05/soap/bindings/HTTP/">
+		<jaxws:outInterceptors>
+			<socle:fault />
+			<as:localisationSoap service="#as.service" version="1.0.0" />
+		</jaxws:outInterceptors>
+	</jaxws:client>
+
+</beans>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>fr.gouv.education.sirhen.programme</groupId>
+		<artifactId>programme-sirhen-j2ee-mapi</artifactId>
+		<version>6.2.0</version>
+	</parent>
+	<groupId>fr.gouv.education.sirhen.mapi</groupId>
+	<artifactId>mapi-gin-gestion-des-contrats-des-non-titulaires</artifactId>
+	<version>6.3.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>${project.artifactId}</name>
+	<description>${project.artifactId}</description>
+	<url>http://maven.sirhen-dev.in.orion.education.fr/${project.artifactId}/${project.version}</url>
+	<properties>
+		<agent-client-version>1.0.0</agent-client-version>
+	</properties>
+	<scm>
+		<connection>scm:svn:http://subversion.sirhen-dev.in.orion.education.fr/mapi-gin-gestion-des-contrats-des-non-titulaires/trunk</connection>
+		<developerConnection>scm:svn:http://subversion.sirhen-dev.in.orion.education.fr/mapi-gin-gestion-des-contrats-des-non-titulaires/trunk</developerConnection>
+		<url>http://subversion.sirhen-dev.in.orion.education.fr/mapi-gin-gestion-des-contrats-des-non-titulaires/trunk</url>
+	</scm>
+	<distributionManagement>
+		<site>
+			<id>maven.sirhen.fr</id>
+			<name>maven.sirhen.fr</name>
+			<url>file:///var/www/maven/${project.artifactId}/${project.version}</url>
+		</site>
+	</distributionManagement>
+	<dependencies>
+		<dependency>
+			<groupId>fr.gouv.education.sirhen.mas.client.standalone</groupId>
+			<artifactId>agent-client</artifactId>
+			<version>${agent-client-version}</version>
+		</dependency>
+	</dependencies>
+</project>

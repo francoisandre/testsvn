@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:sirhen="http://sirhen.education.gouv.fr/composants/jsf/tags"
+      xmlns:id="http://sirhen.education.gouv.fr/composants/id/tags"
+      xml:lang="fr-FR" lang="fr">  
+
+    
+	<head>
+		<title>PORTAIL SIRHEN - Application - <ui:insert name="titre" /></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+		<a4j:loadStyle src="resource://stylesheet/sirhen/global.css"/>
+		<a4j:loadStyle src="resource://stylesheet/sirhen/application.css" rendered="#{config.modeProduction}"/>
+		<a4j:loadStyle src="resource://stylesheet/sirhen/application_recette.css" rendered="#{not config.modeProduction}"/>
+		<a4j:loadStyle src="resource://stylesheet/sirhen/formulaires.css"/>
+		<a4j:loadStyle src="resource://stylesheet/sirhen/menuAppli.css"/>
+		<a4j:loadStyle src="resource://stylesheet/sirhen/styles_impression.css" media="print"/>
+		<a4j:loadStyle src="resource://stylesheet/sirhen/blocAppli.css"/>
+		<a4j:loadStyle src="resource://stylesheet/sirhen/portail.css" rendered="#{config.modeProduction}"/>
+		<a4j:loadStyle src="resource://stylesheet/sirhen/portail_recette.css" rendered="#{not config.modeProduction}"/>
+		<a4j:loadStyle src="resource://stylesheet/sirhen/richfaces.css"/>
+		<a4j:loadScript src="resource://scripts/ct-jsf-utils.js" />
+		<a4j:loadScript src="/stylesheet/mapi-gin-gestion-des-contrats-des-non-titulaires-stylesheet.css" />
+		
+	</head>
+
+	<body class="fondAppli">
+			
+		<div id="global">
+			
+			<div id="bandeauAppli">&nbsp;</div>	
+					
+			<div id="menuAppli1">
+				<ui:include src="menu.xhtml"/>
+			</div> 
+		
+			<div id="contenuAppli">	
+		
+				<div id="navPuces"> 
+					<ui:insert name="NavigationHautPage">
+					</ui:insert>
+					<div id="aide-en-ligne">
+						<h:outputLink value="#" styleClass="lien-popup" target="_blank" title="Accéder à l'aide, ouverture dans une nouvelle fenêtre">	
+							<h:graphicImage width="30" height="30" alt="Aide en ligne"  value="/img/portail/puce_Aide.gif" />  
+						</h:outputLink>	
+					</div>			
+					<div id="guide-metier">
+						<h:outputLink value="#" styleClass="lien-popup" target="_blank" title="Accéder au guide métier, ouverture dans une nouvelle fenêtre">		
+							<h:graphicImage width="27" height="30" alt="Guide Métier"  value="/img/portail/puce_GuideMetier.gif" />
+						</h:outputLink>	
+					</div>					
+				</div>
+	
+				<div id="info"> 
+					<ui:insert name="zone1">
+					</ui:insert>
+				
+					<ui:insert name="zone2">
+					</ui:insert>											
+					
+					<id:agentConnecte />
+				</div>
+			</div>
+		</div>                   
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:sirhen="http://sirhen.education.gouv.fr/composants/jsf/tags"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:gn="http://sirhen.education.gouv.fr/composants/gn/tags"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:id="http://sirhen.education.gouv.fr/composants/id/tags"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	
+	<body>
+
+
+		<ui:composition template="layout/template_sirhen.xhtml">
+          <ui:define name="entete">
+				<div id="entete">
+					<ui:define name="titre">Page Erreur</ui:define>
+				</div>
+			</ui:define>
+	<!--  TITRE DE LA PAGE -->
+	
+	<ui:define name="zone1">
+
+		<!-- DEBUT ZONE ERREUR -->
+		<div class="borderRouge">
+			<div id="titreAppli">
+				Erreur technique
+			</div>
+			<div id="form">
+				<table  >
+					<tr>
+					<td class="tabline2" style="width:870px" >L'application a rencontré une erreur technique et n'est pas en mesure de compléter l'opération.
+				<br/><br/>	Veuillez nous excuser pour la gêne occasionnée.</td>
+					</tr>
+				</table>
+				<div id="boutons">
+									<a class="btAnnuler" href="/mapi-pac-espace-gestionnaire/ihmr/accueil">Se déconnecter</a>
+								</div>
+			</div>
+			
+		</div>
+		<br />
+
+		<!-- FIN ZONE ERREUR -->
+
+	</ui:define>
+
+	<ui:define name="zone2">
+
+		<div id="marge">
+		</div>
+		<br />
+	</ui:define>
+
+</ui:composition>
+
+</body>
+</html>

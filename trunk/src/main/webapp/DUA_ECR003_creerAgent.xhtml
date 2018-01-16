@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:mj="http://mojarra.dev.java.net/mojarra_ext"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:sirhen="http://sirhen.education.gouv.fr/composants/jsf/tags"
+	xmlns:gn="http://sirhen.education.gouv.fr/composants/gn/tags"
+	xmlns:id="http://sirhen.education.gouv.fr/composants/id/tags">
+
+<body>
+
+
+<ui:composition template="layout/template_sirhen.xhtml">
+
+	<!--  TITRE DE LA PAGE -->
+	<ui:define name="titre">
+		<h:outputText value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_030}" />
+	</ui:define>
+
+	<ui:define name="NavigationHautPage">
+		<sirhen:navigation titreAppli="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_030}">
+			<id:portail path="/path/to/file/" />
+			<h:commandLink action="#{AgentControleur.rechercheAgents}"
+				value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_025}" />
+		</sirhen:navigation>
+	</ui:define>
+
+	<ui:define name="zone1">
+
+		<!-- MESSAGE CREATION OK -->
+		<div class="borderBleu"><h:messages errorClass="msgGenerique"
+			infoClass="msgInfoNoir"
+			rendered="#{!AgentModele.accesCreationAgentsAuthorise}" />
+		<div id="marge">&nbsp;</div>
+		</div>
+
+		<!-- FORMULAIRE -->
+		<h:form id="AjouterPersonne"
+			rendered="#{AgentModele.accesCreationAgentsAuthorise}">
+
+			<!-- MESSAGE GENERIQUE -->
+			<div class="borderBleu"><h:messages id="messages"
+				styleClass="msgGenerique" globalOnly="true" /></div>
+
+			<!-- BLOC TITRE + FORMULAIRE -->
+			<sirhen:panel id="identite">
+				<ui:define name="titrePanel">
+					<h:outputText value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_037}" />
+				</ui:define>
+
+				<h:outputLabel style="width:350px"
+					value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_032}" />
+				<h:selectOneMenu id="civilite"
+					value="#{AgentModele.courant.civilite}">
+					<a4j:support event="onclick" ajaxSingle="true"
+						actionListener="#{AgentControleur.civiliteListeActionListener}"
+						reRender="civilite"
+						onsubmit="if (document.getElementById(\'#{rich:clientId('civilite')}\').getElementsByTagName('option').length > 1) return false;" />
+					<f:selectItems value="#{AgentControleur.vue.civiliteListe}"
+						binding="#{AgentControleur.vue.civiliteListeItems}" />
+				</h:selectOneMenu>
+
+				<h:outputLabel value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_010}" for="nom" />
+				<h:panelGroup>
+					<h:inputText id="nom" required="true"
+						value="#{AgentModele.courant.nom}" style="width:250px" />
+					<h:message id="msgNom" for="nom" styleClass="msgContextuel" />
+				</h:panelGroup>
+
+				<h:outputLabel value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_011}" for="prenom" />
+				<h:panelGroup>
+					<h:inputText id="prenom" required="true"
+						value="#{AgentModele.courant.prenom}" style="width:250px" />
+					<h:message id="msgPrenom" for="prenom" styleClass="msgContextuel" />
+				</h:panelGroup>
+
+				<h:outputLabel value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_012}"
+					for="dateNaissance" />
+				<h:panelGroup>
+					<h:inputText id="dateNaissance" required="true"
+						value="#{AgentModele.courant.dateNaissance}" size="10"
+						maxlength="10" />
+					<sirhen:iconAide for="dateNaissance"
+						value="#{msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_001}" style="z-index:3" />
+
+					<h:message id="msgDateNaissance" for="dateNaissance"
+						styleClass="msgContextuel" />
+				</h:panelGroup>
+			</sirhen:panel>
+
+			<sirhen:panel pliable="true" id="adresse">
+
+				<ui:define name="titrePanel">
+					<h:outputText value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_026}" />
+				</ui:define>
+
+				<h:outputLabel value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_027}" />
+				<h:inputText style="width:500px" id="adresse1"
+					value="#{AgentModele.courant.adresse.adresse1}" />
+
+				<h:outputLabel value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_028}" />
+				<h:inputText style="width:500px" id="adresse2"
+					value="#{AgentModele.courant.adresse.adresse2}" />
+
+				<h:outputLabel value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_015}" />
+				<h:inputText id="codePostal"
+					value="#{AgentModele.courant.adresse.codePostal}" size="5"
+					maxlength="5" />
+
+				<h:outputLabel value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_013}" />
+				<h:inputText style="width:500px" id="ville"
+					value="#{AgentModele.courant.adresse.ville}" />
+
+				<h:outputLabel value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_031}" />
+				<h:inputText id="telephone"
+					value="#{AgentModele.courant.adresse.telephone}" size="10"
+					maxlength="10" />
+
+				<ui:define name="basPanel">
+					<span class="grasRouge">*</span> : <h:outputText
+						value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_035}" />
+				</ui:define>
+
+				<ui:define name="boutonsPanel">
+					<h:commandLink styleClass="btValider"
+						action="#{AgentControleur.creerAgent}"
+						value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_033}" />
+					<h:commandLink styleClass="btAnnuler"
+						action="#{AgentControleur.annulerCreationAgent}"
+						value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_034}" />
+				</ui:define>
+
+			</sirhen:panel>
+
+			<!-- FIN du FORMULAIRE  -->
+
+		</h:form>
+
+		<div id="marge">&nbsp;</div>
+		<br />
+		<br />
+	</ui:define>
+
+	<ui:define name="zone2">
+	</ui:define>
+
+</ui:composition>
+
+</body>
+</html>
+
+

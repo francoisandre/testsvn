@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:sirhen="http://sirhen.education.gouv.fr/composants/jsf/tags"
+      xmlns:gn="http://sirhen.education.gouv.fr/composants/gn/tags"
+      xmlns:id="http://sirhen.education.gouv.fr/composants/id/tags">
+<body>
+
+
+<ui:composition
+	  template="layout/template_sirhen.xhtml">
+	  
+	<!--  TITRE DE LA PAGE -->
+	<ui:define name="titre">Consulter un agent</ui:define>
+	
+	<ui:define name="NavigationHautPage">		
+		<sirhen:navigation titreAppli="Consulter un agent">
+			<id:portail />
+			<h:commandLink value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_025}" />
+		</sirhen:navigation>	
+	</ui:define>	  
+	  
+	<ui:define name="zone1">
+	
+		<!-- Bandeau de l'agent selectionne -->
+		<id:agentRecherche rendered="#{not empty AgentModele.courant}" idAgent="#{AgentModele.courant.id}" />
+		
+		<sirhen:form id="ConsulterPersonne">	
+
+			<!-- BLOC TITRE + FORMULAIRE -->
+			<sirhen:panel id="identite">
+					<ui:define name="titrePanel">
+						<h:outputText value="Identité" />
+					</ui:define>	
+				
+					<h:outputLabel value="Civilité " />
+					<h:outputText style="width:500px" value="#{AgentModele.courant.civilite}" >
+						<gn:converter origine="#{config.origManSirhen}" nomenclature="#{config.codeCivilite}"/>
+					</h:outputText>
+
+					<h:outputLabel value="Nom " />
+					<h:outputLabel style="width:500px" value="#{AgentModele.courant.nom}" />
+
+					<h:outputLabel value="Prénom " />
+					<h:outputLabel style="width:500px" value="#{AgentModele.courant.prenom}" />
+
+					<h:outputLabel value="Date de naissance " />
+					<h:outputText style="width:500px" value="#{AgentModele.courant.dateNaissance}" />
+
+					<h:outputLabel value="NUMEN " />
+					<h:outputLabel style="width:500px" value="#{AgentModele.courant.numen}" />
+			</sirhen:panel>
+			
+			<sirhen:panel id="adresse">
+					<ui:define name="titrePanel">
+						<h:outputText value="Adresse" />
+					</ui:define>	
+					
+					<h:outputLabel value="Adresse 1 " />
+					<h:outputLabel style="width:500px" value="#{AgentModele.courant.adresse.adresse1}" />
+
+					<h:outputLabel value="Adresse 2 " />
+					<h:outputLabel style="width:500px" value="#{AgentModele.courant.adresse.adresse2}" />
+
+					<h:outputLabel value="Code Postal " />
+					<h:outputLabel style="width:500px" value="#{AgentModele.courant.adresse.codePostal}" />
+
+					<h:outputLabel value="Ville " />
+					<h:outputLabel style="width:500px"  value="#{AgentModele.courant.adresse.ville}" />
+
+					<h:outputLabel value="Téléphone " />
+					<h:outputLabel style="width:500px" value="#{AgentModele.courant.adresse.telephone}" />
+			</sirhen:panel>
+
+		
+		<div id="marge">&nbsp;</div>
+		</sirhen:form>
+	</ui:define>
+
+	<ui:define name="zone2">	
+	</ui:define>
+
+</ui:composition>
+
+</body>
+</html>
+
+
+			

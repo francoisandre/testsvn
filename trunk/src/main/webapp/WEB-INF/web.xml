@@ -1,0 +1,227 @@
+<?xml version="1.0" ?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	
+	<context-param> <!-- NE PAS MODIFIER, CT-Identification + ClearTrust -->
+		<param-name>NOM_APPLICATION</param-name>
+		<param-value>SIRHEN</param-value>
+	</context-param>
+	
+	<!-- Special Debug Output for Development -->
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
+	<!-- Les commentaires sont ignorés -->
+	<context-param>
+		<param-name>facelets.SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>/WEB-INF/faces-config.xml</param-value>
+	</context-param>
+	
+	
+	<!-- (ATTENTION: doit forcément être le 1er filtre) -->
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>fr.gouv.education.sirhen.ct.commun.web.encoding.DefaultEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/ihm/*</url-pattern>
+	</filter-mapping>
+
+
+	<!-- (ATTENTION: doit forcément être le 2ième filtre) -->
+	<filter>
+		<filter-name>ArtifactIdFilter</filter-name>
+		<filter-class>fr.gouv.education.sirhen.ct.commun.web.context.ArtifactIdFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ArtifactIdFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- filtre d'identification (ATTENTION: doit forcément être le 3ieme filtre) -->
+	<filter>
+		<filter-name>IdentificationFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>IdentificationFilter</filter-name>
+		<url-pattern>/ihm/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>IdentificationFilter</filter-name>
+		<url-pattern>/ihmr/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<!-- Pretty Faces -->
+	<filter>
+		<filter-name>Pretty Filter</filter-name>
+		<filter-class>com.ocpsoft.pretty.PrettyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Pretty Filter</filter-name>
+		<url-pattern>/ihmr/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+
+	<!-- RICHESFACES & JQUERY -->
+	<filter>
+		<display-name>RichFaces Filter</display-name>
+		<filter-name>richfaces</filter-name>
+		<filter-class>org.ajax4jsf.Filter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>richfaces</filter-name>
+		<servlet-name>servletFaces</servlet-name>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>servletFaces</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+
+	<servlet-mapping>
+		<servlet-name>servletFaces</servlet-name>
+		<url-pattern>/ihm/*</url-pattern>
+	</servlet-mapping>
+
+	<context-param>
+		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+		<param-value>server</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>com.sun.faces.numberOfViewsInSession</param-name>
+		<param-value>2</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>com.sun.faces.numberOfLogicalViews</param-name>
+		<param-value>2</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>com.sun.faces.enableViewStateIdRendering</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>com.sun.faces.autoCompleteOffOnViewState</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>com.sun.faces.externalizeJavaScript</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<servlet>
+		<description>Servlet pour les webservice CXF</description>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+	
+	<!--Session timeout	-->
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+
+	<filter>
+		<filter-name>extensionsFilter</filter-name>
+		<filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+		<init-param>
+			<description>Set the size limit for uploaded files.
+	                       Format: 10 - 10 bytes
+	                      10k - 10 KB
+	                      10m - 10 MB
+	                      1g - 1 GB
+	                </description>
+			<param-name>uploadMaxFileSize</param-name>
+			<param-value>100m</param-value>
+		</init-param>
+		<init-param>
+			<description>Set the threshold size - files below this limit are stored
+				     in memory, files above this limit are stored on disk.
+	                         Format: 10 - 10 bytes
+	                         10k - 10 KB
+	                         10m - 10 MB
+	                         1g - 1 GB
+	                 </description>
+			<param-name>uploadThresholdSize</param-name>
+			<param-value>100k</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>extensionsFilter</filter-name>
+		<servlet-name>servletFaces</servlet-name>
+	</filter-mapping>
+
+	<!-- Contexte SPRING -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			WEB-INF/web-context.xml
+		</param-value>
+	</context-param>
+
+	<!-- Listener Spring -->
+	<listener>
+		<listener-class>fr.gouv.education.sirhen.ct.commun.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<locale-encoding-mapping-list>
+		<locale-encoding-mapping>
+			<locale>fr</locale>
+			<encoding>UTF-8</encoding>
+		</locale-encoding-mapping>
+	</locale-encoding-mapping-list>
+	
+	
+	<!-- Erreur HTTP 500 -->
+	<error-page>
+		<error-code>500</error-code>
+		<location>/techniqueError.jsp</location>
+	</error-page>
+
+	<!-- Session expirée -->
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/sessionOut.jsp</location>
+	</error-page>
+</web-app>

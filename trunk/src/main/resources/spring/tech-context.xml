@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:commun="uri://sirhen.education.gouv.fr/ct-commun/1.0" xmlns:socle="uri://sirhen.education.gouv.fr/ct-socle/1.0"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	uri://sirhen.education.gouv.fr/ct-commun/1.0
+	uri://sirhen.education.gouv.fr/ct-commun/1.0/ct-commun.xsd
+	uri://sirhen.education.gouv.fr/ct-socle/1.0
+	uri://sirhen.education.gouv.fr/ct-socle/1.0/ct-socle.xsd">
+
+	<context:component-scan base-package="" resource-pattern="*/.class">
+		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect" />
+	</context:component-scan>
+
+	<aop:aspectj-autoproxy />
+
+	<!-- CT-SOCLE -->
+
+	<socle:exceptionFactory id="${project.artifactId}-exceptionFactory" />
+
+	<!-- CT-COMMUN -->
+
+	<commun:listener id="commun.listener" />
+
+	<commun:clientinterceptor id="commun.clientinterceptor" />
+
+	<commun:version id="commun.versionWS" />
+
+	<bean id="applicationContextProvider" class="fr.gouv.education.sirhen.ct.commun.web.context.ApplicationContextProvider" />
+
+</beans>

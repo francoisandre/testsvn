@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:sirhen="http://sirhen.education.gouv.fr/composants/jsf/tags">
+<body>
+
+
+<ui:composition template="layout/template_sirhen.xhtml">
+
+	<!--  TITRE DE LA PAGE -->
+	<ui:define name="titre">Page Erreur</ui:define>
+
+	<ui:define name="NavigationHautPage">Erreur Generale</ui:define>
+
+	<ui:define name="zone1">
+
+		<!-- DEBUT ZONE ERREUR -->
+
+		<div id="titreAppli">Erreur Generale</div>
+		
+		<sirhen:panel id="version">
+			<ui:define name="titrePanel">
+				<h:outputText value="Information" />
+			</ui:define>	
+					
+			<h:outputLabel value="Exception" />
+			<h:outputText value="#{exception.code} - #{exception.message}" />
+			<h:outputLabel value="GroupId - ArtifactId" />
+			<h:outputText value="#{VersionWS.groupId}  -  #{VersionWS.artifactId}" />
+			<h:outputLabel value="Version" />
+			<h:outputText value="#{VersionWS.version}" />
+			<h:outputLabel id="exception" value="StackTrace" />
+			<h:panelGroup>
+				<pre id="pile"><h:outputText value="#{stackTrace}" /></pre>
+				<span id="AffichePile"><h:outputText
+					value="... Cliquer pour afficher l'ensemble de la Pile ..." /></span>
+			</h:panelGroup>
+		</sirhen:panel>
+		<br />
+		<rich:jQuery selector="#AffichePile"
+			query="click(function(){
+	             	jQuery('#pile').show(300);jQuery('#AffichePile').hide();
+	             })" />
+
+		<rich:jQuery selector="#pile"
+			query="click(function(){
+	             	jQuery(this).hide(300);jQuery('#AffichePile').show();
+	             });" />
+
+		<!-- FIN ZONE ERREUR -->
+
+	</ui:define>
+
+	<ui:define name="zone2">
+
+		<div id="marge">&nbsp;</div>
+		<br />
+	</ui:define>
+
+
+</ui:composition>
+</body>
+</html>
+

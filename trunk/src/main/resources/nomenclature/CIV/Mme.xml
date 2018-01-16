@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title>Nomeclatures</title>
+  <link rel="alternate" href="classpath://nomenclature/CIVILITE" />
+  <subtitle>Listes des éléments disponibles de CIVILITE</subtitle>
+  <id>tag:uuid.sirhen.education.gouv.fr,2010-01:00d37681-8790-4265-a285-ad6c43137381</id>
+  <entry>
+    <title>Madame</title>
+    <author>
+      <name />
+    </author>
+    <id>tag:nomenclature.sirhen.education.gouv.fr:/CIVILITE/Mme</id>
+    <updated>2010-01-19T20:36:56Z</updated>
+    <published>2010-01-19T20:36:56Z</published>
+    <content type="xhtml">
+      <div xmlns="http://www.w3.org/1999/xhtml" class="element">
+        <span class="codeElement">Mme</span>
+        <span class="libelleCourt">Madame</span>
+        <span class="libelleLong">Madame</span>
+        <span class="libelleImpression">Madame</span>
+        <span class="dateEffet">1900-01-01</span>
+      </div>
+    </content>
+  </entry>
+</feed>

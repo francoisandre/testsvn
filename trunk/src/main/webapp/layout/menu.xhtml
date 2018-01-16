@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:sirhen="http://sirhen.education.gouv.fr/composants/jsf/tags">
+
+<ui:composition>
+
+	<sirhen:toggleMenu />
+	
+	<h:form id="menu-gauche">
+		<ul class="menu-niveau-a">
+			<li id="menuAgent">
+				<h:commandLink value="Agent" styleClass="menu-titre" action="#">
+					<f:setPropertyActionListener value="#menuAgent" target="#{UIModele.menuCourant}" />
+				</h:commandLink>
+				<ul class="menu-niveau-b">
+				<li id="smenuCreer">
+					<a4j:commandLink action="#{AgentControleur.saisieAgent}" value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_038}">
+						<f:setPropertyActionListener value="#smenuCreer" target="#{UIModele.menuCourant}" />
+					</a4j:commandLink>
+				</li>
+				<li id="smenuGerer">
+					<a4j:commandLink action="#{AgentControleur.saisieCritereRechercheAgents}" value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_040}">
+						<f:setPropertyActionListener value="#smenuGerer" target="#{UIModele.menuCourant}" />
+					</a4j:commandLink>
+				</li>
+				<li id="smenuSupprimer">
+					<a4j:commandLink action="#{AgentControleur.saisieCritereRechercheAgentsSuppression}" value="${msg.gin_gestiondescontratsdesnontitulaires_mapi_msg_ihm_039}">
+						<f:setPropertyActionListener value="#smenuSupprimer" target="#{UIModele.menuCourant}" />
+					</a4j:commandLink>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</h:form>
+
+	<sirhen:menuJsEvents />
+</ui:composition>
+</html>
